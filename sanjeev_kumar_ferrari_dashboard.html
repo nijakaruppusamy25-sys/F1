@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sanjeev Kumar's Pit Wall · Ferrari Edition</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --carbon: #080808;
+  --carbon-2: #111111;
+  --paper: #f5f1eb;
+  --paper-2: #ebe3d7;
+  --ink: #0b0b0b;
+  --ink-2: #5c5249;
+
+  --racing: #dc0000;
+  --racing-hot: #ff2a2a;
+  --racing-deep: #8f0000;
+  --gold: #d4a017;
+
+  --ferrari: #dc0000;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.hero {
+  background: var(--carbon);
+  color: white;
+  padding: 70px 40px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px solid var(--racing);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255,255,255,0.03) 0 2px,
+    transparent 2px 14px
+  );
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.live {
+  background: var(--racing);
+  color: white;
+  padding: 10px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.greeting {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  margin-top: 80px;
+}
+
+.title h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(60px, 10vw, 130px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.title .accent {
+  color: var(--racing-hot);
+  font-style: italic;
+}
+
+.subtitle {
+  margin-top: 25px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.next-race {
+  background: var(--carbon);
+  color: white;
+  padding: 40px;
+  border-top: 5px solid var(--racing);
+  margin-top: -40px;
+  position: relative;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--racing-hot);
+  margin-bottom: 14px;
+}
+
+.race-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  line-height: 0.95;
+}
+
+.race-name em {
+  color: var(--racing-hot);
+  font-style: italic;
+}
+
+.race-meta {
+  margin-top: 16px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.card {
+  background: white;
+  border: 2px solid var(--ink);
+  padding: 28px;
+  transition: transform 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.card .label {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+}
+
+.driver {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.driver:last-child {
+  border-bottom: none;
+}
+
+.driver-name {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.team {
+  color: var(--racing);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.points {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.favorite {
+  background: linear-gradient(135deg, var(--racing), var(--racing-deep));
+  color: white;
+}
+
+.favorite h3,
+.favorite .label,
+.favorite p {
+  color: white;
+}
+
+.favorite-driver {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  line-height: 1;
+  margin: 18px 0;
+}
+
+.favorite-team {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--ink-2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 50px 24px;
+  }
+
+  .main {
+    padding: 24px;
+  }
+
+  .race-name {
+    font-size: 42px;
+  }
+
+  .title {
+    margin-top: 50px;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="topbar">
+    <div class="live">Live Ferrari Edition</div>
+    <div class="greeting">Good evening, Sanjeev Kumar</div>
+  </div>
+
+  <div class="title">
+    <h1>
+      Sanjeev Kumar's<br>
+      <span class="accent">Pit Wall.</span>
+    </h1>
+
+    <div class="subtitle">
+      Charles Leclerc · Ferrari · Formula 1 2026
+    </div>
+  </div>
+</section>
+
+<div class="main">
+
+  <section class="next-race">
+    <div class="section-label">Next Grand Prix</div>
+
+    <div class="race-name">
+      Monaco <em>Grand Prix</em>
+    </div>
+
+    <div class="race-meta">
+      Circuit de Monaco · Monte Carlo<br>
+      Ferrari looking strong on low-speed corners this weekend.
+    </div>
+  </section>
+
+  <div class="grid">
+
+    <div class="card favorite">
+      <div class="label">Favorite Driver</div>
+      <div class="favorite-driver">Charles Leclerc</div>
+      <div class="favorite-team">Scuderia Ferrari</div>
+
+      <p style="margin-top:20px; line-height:1.7; opacity:0.92;">
+        Precision. Aggression. Monaco magic.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="label">Driver Standings</div>
+      <h3>Top Drivers</h3>
+
+      <div class="driver">
+        <div>
+          <div class="driver-name">Charles Leclerc</div>
+          <div class="team">Ferrari</div>
+        </div>
+        <div class="points">128</div>
+      </div>
+
+      <div class="driver">
+        <div>
+          <div class="driver-name">Max Verstappen</div>
+          <div class="team">Red Bull Racing</div>
+        </div>
+        <div class="points">121</div>
+      </div>
+
+      <div class="driver">
+        <div>
+          <div class="driver-name">Lando Norris</div>
+          <div class="team">McLaren</div>
+        </div>
+        <div class="points">110</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">Constructor Battle</div>
+      <h3>Teams</h3>
+
+      <div class="driver">
+        <div>
+          <div class="driver-name">Ferrari</div>
+          <div class="team">Leclerc · Sainz</div>
+        </div>
+        <div class="points">238</div>
+      </div>
+
+      <div class="driver">
+        <div>
+          <div class="driver-name">Red Bull</div>
+          <div class="team">Verstappen · Perez</div>
+        </div>
+        <div class="points">225</div>
+      </div>
+
+      <div class="driver">
+        <div>
+          <div class="driver-name">McLaren</div>
+          <div class="team">Norris · Piastri</div>
+        </div>
+        <div class="points">210</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  SANJEEV KUMAR · FERRARI EDITION · LIGHTS OUT AND AWAY WE GO
+</footer>
+
+</body>
+</html>
