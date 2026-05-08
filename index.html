@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanjeev Kumar's Ferrari F1 Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+      <div class="live-badge">LIVE FERRARI EDITION</div>
+
+      <h1>
+        Sanjeev Kumar's
+        <span>Pit Wall.</span>
+      </h1>
+
+      <p class="subtitle">
+        Charles Leclerc · Ferrari · Formula 1 Dashboard
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <div class="section-title">Next Grand Prix</div>
+
+      <h2 id="race-name">Loading...</h2>
+      <p id="race-date"></p>
+      <p id="race-circuit"></p>
+
+      <div class="countdown" id="countdown">
+        Loading countdown...
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Driver Standings</div>
+
+      <div id="driver-standings"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Constructor Standings</div>
+
+      <div id="constructor-standings"></div>
+    </section>
+
+    <section class="card ferrari-card">
+      <div class="section-title">Favorite Driver</div>
+
+      <h2>Max Verstappen</h2>
+        <p>Red Bull Racing</p>
+
+    <br>
+
+    <h2>Lewis Hamilton</h2>
+        <p>Mercedes / Ferrari Legacy</p>
+
+    <br>
+
+    <h2>Charles Leclerc</h2>
+    <p>Scuderia Ferrari</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Built with the Ergast F1 API · Ferrari fan dashboard</p>
+  </footer>
+
+  <script type="module" src="script.js" defer></script>
+</body>
+</html>
